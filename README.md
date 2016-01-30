@@ -1,6 +1,8 @@
 address-validator
 ======================
 
+Modifed by ChooseDews due to an unknown or reported error fork only bypasses the issue
+
 > Validate street addresses in nodejs using google geocoding api.
 
 From an input address the lib will return to you a valid address with correct spelling and lat/lon coords, and/or a set of inexact matches that can be used to drive a 'did you mean?' widget.
@@ -11,10 +13,8 @@ Install
 -------
 
 ``` bash
-npm install address-validator
+npm install https://github.com/ChooseDews/address-validator.git
 ```
-
-![npm](https://nodei.co/npm/address-validator.png)
 
 Usage
 -----
@@ -35,7 +35,7 @@ var address = new Address({
 //the passed in address does not need to be an address object it can be a string. (address objects will give you a better likelihood of finding an exact match)
 address = '100 North Washington St, Boston, MA, US';
 
-//`addressValidator.match.streetAddress` -> tells the validator that you think the input should be a street address. This data makes the validator more accurate. 
+//`addressValidator.match.streetAddress` -> tells the validator that you think the input should be a street address. This data makes the validator more accurate.
 // But, sometimes you dont know.. in that cause you should use `addressValidator.match.unknown`
 addressValidator.validate(address, addressValidator.match.streetAddress, function(err, exact, inexact){
     console.log('input: ', address.toString())
@@ -85,7 +85,7 @@ addressValidator.validate(inputAddr, [addressType, ] cb)
 -------------------------
 
 validate an input address.
-    
+
     `inputAddr` - validator.Address object or map with 'street', 'city', 'state', 'country' keys, or string address
     `addressType` - validator.match.[key] where key is: streetAddress, route, city, state, country, unknown
             This tells the validator the type of an address you are expecting to validate. default is `validator.match.streetAddress` (you may omit this arg).
@@ -100,7 +100,7 @@ addressValidator.setOptions(options)
 
 set address lookup options
 
-    `options`: an object containing: 
+    `options`: an object containing:
         `countryBias`: more likely to find addresses in this country. Think of this as you where you are searching "from" to find results around you. (use ISO 3166-1 country code)
         `countryMatch`: match results in this country only. (ISO 3166-1 country code)
         `key`: optional google api key (if used will submit requests over https)
